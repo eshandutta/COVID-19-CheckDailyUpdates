@@ -1,0 +1,104 @@
+﻿@model IEnumerable<COVID_19.Models.CountryDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Covid 19 Country wise Updates</h1>
+
+<div>
+    <input type="text" id="Search" placeholder="Search" class="form-control" />
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.todayCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.deaths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.todayDeaths)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recovered)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.critical)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.casesPerOneMillion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.deathsPerOneMillion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.firstCase)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cases)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.todayCases)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deaths)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.todayDeaths)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recovered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.critical)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.casesPerOneMillion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deathsPerOneMillion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstCase)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#Search").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
